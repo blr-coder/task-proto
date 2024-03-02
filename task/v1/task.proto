@@ -6,6 +6,7 @@ option go_package = "/task";
 
 service TaskService {
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+  rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
 }
 
 message CreateTaskRequest {
@@ -17,9 +18,8 @@ message CreateTaskRequest {
 
 message CreateTaskResponse {}
 
-/*type CreateTask struct {
-       Title       string
-       Description string
-       CustomerID  uuid.UUID
-       ExecutorID  uuid.UUID
-   }*/
+message GetTaskRequest {
+  int64 task_id = 1;
+}
+
+message GetTaskResponse {}

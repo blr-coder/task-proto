@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: task/v1/task.proto
 
-package task
+package taskv1
 
 import (
 	context "context"

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package task.v1;
 
+import "buf/validate/validate.proto";
+
 option go_package = "/task";
 
 service TaskService {
@@ -10,10 +12,10 @@ service TaskService {
 }
 
 message CreateTaskRequest {
-  string title = 1;
+  string title = 1 [(buf.validate.field).string.min_len = 5];
   string description = 2;
-  string customer_id = 3;
-  string executor_id = 4;
+  string customer_id = 3 [(buf.validate.field).string.uuid = true];
+  string executor_id = 4 [(buf.validate.field).string.uuid = true];
 }
 
 message CreateTaskResponse {

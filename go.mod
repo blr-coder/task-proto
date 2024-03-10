@@ -1,11 +1,13 @@
 module github.com/blr-coder/task-proto
 
-go 1.20
+go 1.21
+
+toolchain go1.22.0
 
 require (
-	github.com/bufbuild/protovalidate/tools v0.6.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.33.0-20240221180331-f05a6f4403ce.1
 	google.golang.org/grpc v1.62.0
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (

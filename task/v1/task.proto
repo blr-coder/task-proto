@@ -9,6 +9,8 @@ option go_package = "/task";
 service TaskService {
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
 }
 
 message CreateTaskRequest {
@@ -27,3 +29,9 @@ message GetTaskRequest {
 }
 
 message GetTaskResponse {}
+
+message DeleteTaskRequest {
+  int64 task_id = 1;
+}
+
+message DeleteTaskResponse {}

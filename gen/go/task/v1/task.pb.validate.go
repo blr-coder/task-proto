@@ -450,3 +450,209 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetTaskResponseValidationError{}
+
+// Validate checks the field values on DeleteTaskRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *DeleteTaskRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteTaskRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteTaskRequestMultiError, or nil if none found.
+func (m *DeleteTaskRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteTaskRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TaskId
+
+	if len(errors) > 0 {
+		return DeleteTaskRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteTaskRequestMultiError is an error wrapping multiple validation errors
+// returned by DeleteTaskRequest.ValidateAll() if the designated constraints
+// aren't met.
+type DeleteTaskRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteTaskRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteTaskRequestMultiError) AllErrors() []error { return m }
+
+// DeleteTaskRequestValidationError is the validation error returned by
+// DeleteTaskRequest.Validate if the designated constraints aren't met.
+type DeleteTaskRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteTaskRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteTaskRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteTaskRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteTaskRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteTaskRequestValidationError) ErrorName() string {
+	return "DeleteTaskRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteTaskRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteTaskRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteTaskRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteTaskRequestValidationError{}
+
+// Validate checks the field values on DeleteTaskResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DeleteTaskResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteTaskResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteTaskResponseMultiError, or nil if none found.
+func (m *DeleteTaskResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteTaskResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return DeleteTaskResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteTaskResponseMultiError is an error wrapping multiple validation errors
+// returned by DeleteTaskResponse.ValidateAll() if the designated constraints
+// aren't met.
+type DeleteTaskResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteTaskResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteTaskResponseMultiError) AllErrors() []error { return m }
+
+// DeleteTaskResponseValidationError is the validation error returned by
+// DeleteTaskResponse.Validate if the designated constraints aren't met.
+type DeleteTaskResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteTaskResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteTaskResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteTaskResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteTaskResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteTaskResponseValidationError) ErrorName() string {
+	return "DeleteTaskResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteTaskResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteTaskResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteTaskResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteTaskResponseValidationError{}

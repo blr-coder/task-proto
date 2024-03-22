@@ -451,6 +451,216 @@ var _ interface {
 	ErrorName() string
 } = GetTaskResponseValidationError{}
 
+// Validate checks the field values on UpdateTaskRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *UpdateTaskRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateTaskRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateTaskRequestMultiError, or nil if none found.
+func (m *UpdateTaskRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateTaskRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TaskId
+
+	// no validation rules for Title
+
+	// no validation rules for Description
+
+	if len(errors) > 0 {
+		return UpdateTaskRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateTaskRequestMultiError is an error wrapping multiple validation errors
+// returned by UpdateTaskRequest.ValidateAll() if the designated constraints
+// aren't met.
+type UpdateTaskRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateTaskRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateTaskRequestMultiError) AllErrors() []error { return m }
+
+// UpdateTaskRequestValidationError is the validation error returned by
+// UpdateTaskRequest.Validate if the designated constraints aren't met.
+type UpdateTaskRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateTaskRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateTaskRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateTaskRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateTaskRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateTaskRequestValidationError) ErrorName() string {
+	return "UpdateTaskRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateTaskRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateTaskRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateTaskRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateTaskRequestValidationError{}
+
+// Validate checks the field values on UpdateTaskResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UpdateTaskResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateTaskResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateTaskResponseMultiError, or nil if none found.
+func (m *UpdateTaskResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateTaskResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return UpdateTaskResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateTaskResponseMultiError is an error wrapping multiple validation errors
+// returned by UpdateTaskResponse.ValidateAll() if the designated constraints
+// aren't met.
+type UpdateTaskResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateTaskResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateTaskResponseMultiError) AllErrors() []error { return m }
+
+// UpdateTaskResponseValidationError is the validation error returned by
+// UpdateTaskResponse.Validate if the designated constraints aren't met.
+type UpdateTaskResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateTaskResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateTaskResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateTaskResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateTaskResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateTaskResponseValidationError) ErrorName() string {
+	return "UpdateTaskResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateTaskResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateTaskResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateTaskResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateTaskResponseValidationError{}
+
 // Validate checks the field values on DeleteTaskRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.

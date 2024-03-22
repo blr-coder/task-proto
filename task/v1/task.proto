@@ -10,6 +10,7 @@ service TaskService {
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
 
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
 }
 
@@ -29,6 +30,14 @@ message GetTaskRequest {
 }
 
 message GetTaskResponse {}
+
+message UpdateTaskRequest {
+  int64 task_id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message UpdateTaskResponse {}
 
 message DeleteTaskRequest {
   int64 task_id = 1;

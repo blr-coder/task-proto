@@ -3,6 +3,7 @@ syntax = "proto3";
 package task.v1;
 
 import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "/task";
 
@@ -12,6 +13,24 @@ service TaskService {
 
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
+}
+
+message Task {
+  int64 id = 1;
+  string title = 2;
+  string description = 3;
+  string customer_id = 4 [(buf.validate.field).string.uuid = true];
+  string executor_id = 5 [(buf.validate.field).string.uuid = true];
+  TaskStatus status = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+enum TaskStatus {
+  TASK_STATUS_UNSPECIFIED = 0;
+  TASK_STATUS_PENDING = 1;
+  TASK_STATUS_PROCESSING = 2;
+  TASK_STATUS_DONE = 3;
 }
 
 message CreateTaskRequest {
@@ -29,7 +48,9 @@ message GetTaskRequest {
   int64 task_id = 1;
 }
 
-message GetTaskResponse {}
+message GetTaskResponse {
+  Task task = 1;
+}
 
 message UpdateTaskRequest {
   int64 task_id = 1;

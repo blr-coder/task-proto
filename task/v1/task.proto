@@ -4,15 +4,54 @@ package task.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 option go_package = "/task";
 
 service TaskService {
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
-
+  rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
+}
+
+message ListTasksRequest {
+  // Add validation rules
+  TaskFiltering filtering = 1;
+  TaskSorting sorting = 2;
+  Limiting limiting = 3;
+}
+
+message ListTasksResponse {
+  repeated Task tasks = 1;
+}
+
+message Limiting {
+  int64 limit = 3 [(buf.validate.field).int64.gt = 1];
+  int64 offset = 4 [(buf.validate.field).int64.gte = 0];
+}
+
+message TaskSorting {
+  repeated TaskSortBy sort_by = 1;
+  SortOrder sort_order = 2;
+}
+
+enum TaskSortBy {
+  CREATED_AT = 0;
+  ID = 1;
+}
+
+enum SortOrder {
+  ASC = 0;
+  DESC = 1;
+}
+
+message TaskFiltering {
+  google.protobuf.Timestamp created_at_from = 1;
+  google.protobuf.Timestamp created_at_to = 2;
+  repeated TaskStatus statuses = 3;
+  google.protobuf.BoolValue is_active = 4;
 }
 
 message Task {
@@ -24,6 +63,7 @@ message Task {
   TaskStatus status = 6;
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
+  bool is_active = 9;
 }
 
 enum TaskStatus {

@@ -35,6 +35,720 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on ListTasksRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ListTasksRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListTasksRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListTasksRequestMultiError, or nil if none found.
+func (m *ListTasksRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListTasksRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetFiltering()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, ListTasksRequestValidationError{
+					field:  "Filtering",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, ListTasksRequestValidationError{
+					field:  "Filtering",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetFiltering()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListTasksRequestValidationError{
+				field:  "Filtering",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetSorting()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, ListTasksRequestValidationError{
+					field:  "Sorting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, ListTasksRequestValidationError{
+					field:  "Sorting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetSorting()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListTasksRequestValidationError{
+				field:  "Sorting",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetLimiting()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, ListTasksRequestValidationError{
+					field:  "Limiting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, ListTasksRequestValidationError{
+					field:  "Limiting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetLimiting()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListTasksRequestValidationError{
+				field:  "Limiting",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return ListTasksRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListTasksRequestMultiError is an error wrapping multiple validation errors
+// returned by ListTasksRequest.ValidateAll() if the designated constraints
+// aren't met.
+type ListTasksRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListTasksRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListTasksRequestMultiError) AllErrors() []error { return m }
+
+// ListTasksRequestValidationError is the validation error returned by
+// ListTasksRequest.Validate if the designated constraints aren't met.
+type ListTasksRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListTasksRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListTasksRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListTasksRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListTasksRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListTasksRequestValidationError) ErrorName() string { return "ListTasksRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ListTasksRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListTasksRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListTasksRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListTasksRequestValidationError{}
+
+// Validate checks the field values on ListTasksResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ListTasksResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListTasksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListTasksResponseMultiError, or nil if none found.
+func (m *ListTasksResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListTasksResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetTasks() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ListTasksResponseValidationError{
+						field:  fmt.Sprintf("Tasks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ListTasksResponseValidationError{
+						field:  fmt.Sprintf("Tasks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListTasksResponseValidationError{
+					field:  fmt.Sprintf("Tasks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return ListTasksResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListTasksResponseMultiError is an error wrapping multiple validation errors
+// returned by ListTasksResponse.ValidateAll() if the designated constraints
+// aren't met.
+type ListTasksResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListTasksResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListTasksResponseMultiError) AllErrors() []error { return m }
+
+// ListTasksResponseValidationError is the validation error returned by
+// ListTasksResponse.Validate if the designated constraints aren't met.
+type ListTasksResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListTasksResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListTasksResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListTasksResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListTasksResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListTasksResponseValidationError) ErrorName() string {
+	return "ListTasksResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListTasksResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListTasksResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListTasksResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListTasksResponseValidationError{}
+
+// Validate checks the field values on Limiting with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Limiting) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Limiting with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in LimitingMultiError, or nil
+// if none found.
+func (m *Limiting) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Limiting) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Limit
+
+	// no validation rules for Offset
+
+	if len(errors) > 0 {
+		return LimitingMultiError(errors)
+	}
+
+	return nil
+}
+
+// LimitingMultiError is an error wrapping multiple validation errors returned
+// by Limiting.ValidateAll() if the designated constraints aren't met.
+type LimitingMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m LimitingMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m LimitingMultiError) AllErrors() []error { return m }
+
+// LimitingValidationError is the validation error returned by
+// Limiting.Validate if the designated constraints aren't met.
+type LimitingValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e LimitingValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e LimitingValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e LimitingValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e LimitingValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e LimitingValidationError) ErrorName() string { return "LimitingValidationError" }
+
+// Error satisfies the builtin error interface
+func (e LimitingValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sLimiting.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = LimitingValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = LimitingValidationError{}
+
+// Validate checks the field values on TaskSorting with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *TaskSorting) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on TaskSorting with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in TaskSortingMultiError, or
+// nil if none found.
+func (m *TaskSorting) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *TaskSorting) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for SortOrder
+
+	if len(errors) > 0 {
+		return TaskSortingMultiError(errors)
+	}
+
+	return nil
+}
+
+// TaskSortingMultiError is an error wrapping multiple validation errors
+// returned by TaskSorting.ValidateAll() if the designated constraints aren't met.
+type TaskSortingMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m TaskSortingMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m TaskSortingMultiError) AllErrors() []error { return m }
+
+// TaskSortingValidationError is the validation error returned by
+// TaskSorting.Validate if the designated constraints aren't met.
+type TaskSortingValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e TaskSortingValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e TaskSortingValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e TaskSortingValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e TaskSortingValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e TaskSortingValidationError) ErrorName() string { return "TaskSortingValidationError" }
+
+// Error satisfies the builtin error interface
+func (e TaskSortingValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sTaskSorting.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = TaskSortingValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = TaskSortingValidationError{}
+
+// Validate checks the field values on TaskFiltering with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *TaskFiltering) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on TaskFiltering with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in TaskFilteringMultiError, or
+// nil if none found.
+func (m *TaskFiltering) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *TaskFiltering) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetCreatedAtFrom()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, TaskFilteringValidationError{
+					field:  "CreatedAtFrom",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, TaskFilteringValidationError{
+					field:  "CreatedAtFrom",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetCreatedAtFrom()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return TaskFilteringValidationError{
+				field:  "CreatedAtFrom",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetCreatedAtTo()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, TaskFilteringValidationError{
+					field:  "CreatedAtTo",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, TaskFilteringValidationError{
+					field:  "CreatedAtTo",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetCreatedAtTo()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return TaskFilteringValidationError{
+				field:  "CreatedAtTo",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetIsActive()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, TaskFilteringValidationError{
+					field:  "IsActive",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, TaskFilteringValidationError{
+					field:  "IsActive",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetIsActive()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return TaskFilteringValidationError{
+				field:  "IsActive",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return TaskFilteringMultiError(errors)
+	}
+
+	return nil
+}
+
+// TaskFilteringMultiError is an error wrapping multiple validation errors
+// returned by TaskFiltering.ValidateAll() if the designated constraints
+// aren't met.
+type TaskFilteringMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m TaskFilteringMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m TaskFilteringMultiError) AllErrors() []error { return m }
+
+// TaskFilteringValidationError is the validation error returned by
+// TaskFiltering.Validate if the designated constraints aren't met.
+type TaskFilteringValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e TaskFilteringValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e TaskFilteringValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e TaskFilteringValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e TaskFilteringValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e TaskFilteringValidationError) ErrorName() string { return "TaskFilteringValidationError" }
+
+// Error satisfies the builtin error interface
+func (e TaskFilteringValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sTaskFiltering.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = TaskFilteringValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = TaskFilteringValidationError{}
+
 // Validate checks the field values on Task with the rules defined in the proto
 // definition for this message. If any rules are violated, the first error
 // encountered is returned, or nil if there are no violations.
@@ -125,6 +839,8 @@ func (m *Task) validate(all bool) error {
 			}
 		}
 	}
+
+	// no validation rules for IsActive
 
 	if len(errors) > 0 {
 		return TaskMultiError(errors)

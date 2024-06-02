@@ -358,6 +358,241 @@ var _ interface {
 	ErrorName() string
 } = ListTasksResponseValidationError{}
 
+// Validate checks the field values on TotalTasksRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *TotalTasksRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on TotalTasksRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// TotalTasksRequestMultiError, or nil if none found.
+func (m *TotalTasksRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *TotalTasksRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetFiltering()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, TotalTasksRequestValidationError{
+					field:  "Filtering",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, TotalTasksRequestValidationError{
+					field:  "Filtering",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetFiltering()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return TotalTasksRequestValidationError{
+				field:  "Filtering",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return TotalTasksRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// TotalTasksRequestMultiError is an error wrapping multiple validation errors
+// returned by TotalTasksRequest.ValidateAll() if the designated constraints
+// aren't met.
+type TotalTasksRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m TotalTasksRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m TotalTasksRequestMultiError) AllErrors() []error { return m }
+
+// TotalTasksRequestValidationError is the validation error returned by
+// TotalTasksRequest.Validate if the designated constraints aren't met.
+type TotalTasksRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e TotalTasksRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e TotalTasksRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e TotalTasksRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e TotalTasksRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e TotalTasksRequestValidationError) ErrorName() string {
+	return "TotalTasksRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e TotalTasksRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sTotalTasksRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = TotalTasksRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = TotalTasksRequestValidationError{}
+
+// Validate checks the field values on TotalTasksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *TotalTasksResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on TotalTasksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// TotalTasksResponseMultiError, or nil if none found.
+func (m *TotalTasksResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *TotalTasksResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Total
+
+	if len(errors) > 0 {
+		return TotalTasksResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// TotalTasksResponseMultiError is an error wrapping multiple validation errors
+// returned by TotalTasksResponse.ValidateAll() if the designated constraints
+// aren't met.
+type TotalTasksResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m TotalTasksResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m TotalTasksResponseMultiError) AllErrors() []error { return m }
+
+// TotalTasksResponseValidationError is the validation error returned by
+// TotalTasksResponse.Validate if the designated constraints aren't met.
+type TotalTasksResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e TotalTasksResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e TotalTasksResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e TotalTasksResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e TotalTasksResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e TotalTasksResponseValidationError) ErrorName() string {
+	return "TotalTasksResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e TotalTasksResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sTotalTasksResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = TotalTasksResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = TotalTasksResponseValidationError{}
+
 // Validate checks the field values on Limiting with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.

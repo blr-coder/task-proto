@@ -12,6 +12,7 @@ service TaskService {
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
   rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
+  rpc TotalTasks(TotalTasksRequest) returns (TotalTasksResponse);
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
 }
@@ -25,6 +26,14 @@ message ListTasksRequest {
 
 message ListTasksResponse {
   repeated Task tasks = 1;
+}
+
+message TotalTasksRequest {
+  TaskFiltering filtering = 1;
+}
+
+message TotalTasksResponse {
+  uint64 total = 1;
 }
 
 message Limiting {

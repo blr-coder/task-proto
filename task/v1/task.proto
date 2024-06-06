@@ -15,7 +15,31 @@ service TaskService {
   rpc TotalTasks(TotalTasksRequest) returns (TotalTasksResponse);
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
+
+  rpc AssignExecutor(AssignExecutorRequest) returns (AssignExecutorResponse);
+  rpc AssignRandomExecutor(AssignRandomExecutorRequest) returns (AssignRandomExecutorResponse);
+  rpc SetStatus(SetStatusRequest) returns (SetStatusResponse);
 }
+
+message AssignExecutorRequest {
+  int64 task_id = 1;
+  string executor_id = 2 [(buf.validate.field).string.uuid = true];
+}
+
+message AssignExecutorResponse {}
+
+message AssignRandomExecutorRequest {
+  int64 task_id = 1;
+}
+
+message AssignRandomExecutorResponse {}
+
+message SetStatusRequest {
+  int64 task_id = 1;
+  TaskStatus status = 2;
+}
+
+message SetStatusResponse {}
 
 message ListTasksRequest {
   // Add validation rules
@@ -105,9 +129,15 @@ message UpdateTaskRequest {
   int64 task_id = 1;
   string title = 2;
   string description = 3;
+  string customer_id = 4 [(buf.validate.field).string.uuid = true];
+  string executor_id = 5 [(buf.validate.field).string.uuid = true];
+  TaskStatus status = 6;
+  bool is_active = 7;
 }
 
-message UpdateTaskResponse {}
+message UpdateTaskResponse {
+  Task task = 1;
+}
 
 message DeleteTaskRequest {
   int64 task_id = 1;

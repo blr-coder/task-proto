@@ -35,6 +35,628 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on AssignExecutorRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AssignExecutorRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AssignExecutorRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AssignExecutorRequestMultiError, or nil if none found.
+func (m *AssignExecutorRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AssignExecutorRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TaskId
+
+	// no validation rules for ExecutorId
+
+	if len(errors) > 0 {
+		return AssignExecutorRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// AssignExecutorRequestMultiError is an error wrapping multiple validation
+// errors returned by AssignExecutorRequest.ValidateAll() if the designated
+// constraints aren't met.
+type AssignExecutorRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AssignExecutorRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AssignExecutorRequestMultiError) AllErrors() []error { return m }
+
+// AssignExecutorRequestValidationError is the validation error returned by
+// AssignExecutorRequest.Validate if the designated constraints aren't met.
+type AssignExecutorRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AssignExecutorRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AssignExecutorRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AssignExecutorRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AssignExecutorRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AssignExecutorRequestValidationError) ErrorName() string {
+	return "AssignExecutorRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AssignExecutorRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAssignExecutorRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AssignExecutorRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AssignExecutorRequestValidationError{}
+
+// Validate checks the field values on AssignExecutorResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AssignExecutorResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AssignExecutorResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AssignExecutorResponseMultiError, or nil if none found.
+func (m *AssignExecutorResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AssignExecutorResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return AssignExecutorResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// AssignExecutorResponseMultiError is an error wrapping multiple validation
+// errors returned by AssignExecutorResponse.ValidateAll() if the designated
+// constraints aren't met.
+type AssignExecutorResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AssignExecutorResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AssignExecutorResponseMultiError) AllErrors() []error { return m }
+
+// AssignExecutorResponseValidationError is the validation error returned by
+// AssignExecutorResponse.Validate if the designated constraints aren't met.
+type AssignExecutorResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AssignExecutorResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AssignExecutorResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AssignExecutorResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AssignExecutorResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AssignExecutorResponseValidationError) ErrorName() string {
+	return "AssignExecutorResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AssignExecutorResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAssignExecutorResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AssignExecutorResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AssignExecutorResponseValidationError{}
+
+// Validate checks the field values on AssignRandomExecutorRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AssignRandomExecutorRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AssignRandomExecutorRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AssignRandomExecutorRequestMultiError, or nil if none found.
+func (m *AssignRandomExecutorRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AssignRandomExecutorRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TaskId
+
+	if len(errors) > 0 {
+		return AssignRandomExecutorRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// AssignRandomExecutorRequestMultiError is an error wrapping multiple
+// validation errors returned by AssignRandomExecutorRequest.ValidateAll() if
+// the designated constraints aren't met.
+type AssignRandomExecutorRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AssignRandomExecutorRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AssignRandomExecutorRequestMultiError) AllErrors() []error { return m }
+
+// AssignRandomExecutorRequestValidationError is the validation error returned
+// by AssignRandomExecutorRequest.Validate if the designated constraints
+// aren't met.
+type AssignRandomExecutorRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AssignRandomExecutorRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AssignRandomExecutorRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AssignRandomExecutorRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AssignRandomExecutorRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AssignRandomExecutorRequestValidationError) ErrorName() string {
+	return "AssignRandomExecutorRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AssignRandomExecutorRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAssignRandomExecutorRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AssignRandomExecutorRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AssignRandomExecutorRequestValidationError{}
+
+// Validate checks the field values on AssignRandomExecutorResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AssignRandomExecutorResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AssignRandomExecutorResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AssignRandomExecutorResponseMultiError, or nil if none found.
+func (m *AssignRandomExecutorResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AssignRandomExecutorResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return AssignRandomExecutorResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// AssignRandomExecutorResponseMultiError is an error wrapping multiple
+// validation errors returned by AssignRandomExecutorResponse.ValidateAll() if
+// the designated constraints aren't met.
+type AssignRandomExecutorResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AssignRandomExecutorResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AssignRandomExecutorResponseMultiError) AllErrors() []error { return m }
+
+// AssignRandomExecutorResponseValidationError is the validation error returned
+// by AssignRandomExecutorResponse.Validate if the designated constraints
+// aren't met.
+type AssignRandomExecutorResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AssignRandomExecutorResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AssignRandomExecutorResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AssignRandomExecutorResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AssignRandomExecutorResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AssignRandomExecutorResponseValidationError) ErrorName() string {
+	return "AssignRandomExecutorResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AssignRandomExecutorResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAssignRandomExecutorResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AssignRandomExecutorResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AssignRandomExecutorResponseValidationError{}
+
+// Validate checks the field values on SetStatusRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *SetStatusRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SetStatusRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// SetStatusRequestMultiError, or nil if none found.
+func (m *SetStatusRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SetStatusRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TaskId
+
+	// no validation rules for Status
+
+	if len(errors) > 0 {
+		return SetStatusRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// SetStatusRequestMultiError is an error wrapping multiple validation errors
+// returned by SetStatusRequest.ValidateAll() if the designated constraints
+// aren't met.
+type SetStatusRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SetStatusRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SetStatusRequestMultiError) AllErrors() []error { return m }
+
+// SetStatusRequestValidationError is the validation error returned by
+// SetStatusRequest.Validate if the designated constraints aren't met.
+type SetStatusRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SetStatusRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SetStatusRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SetStatusRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SetStatusRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SetStatusRequestValidationError) ErrorName() string { return "SetStatusRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e SetStatusRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSetStatusRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SetStatusRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SetStatusRequestValidationError{}
+
+// Validate checks the field values on SetStatusResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *SetStatusResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SetStatusResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// SetStatusResponseMultiError, or nil if none found.
+func (m *SetStatusResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SetStatusResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return SetStatusResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// SetStatusResponseMultiError is an error wrapping multiple validation errors
+// returned by SetStatusResponse.ValidateAll() if the designated constraints
+// aren't met.
+type SetStatusResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SetStatusResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SetStatusResponseMultiError) AllErrors() []error { return m }
+
+// SetStatusResponseValidationError is the validation error returned by
+// SetStatusResponse.Validate if the designated constraints aren't met.
+type SetStatusResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SetStatusResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SetStatusResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SetStatusResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SetStatusResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SetStatusResponseValidationError) ErrorName() string {
+	return "SetStatusResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SetStatusResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSetStatusResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SetStatusResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SetStatusResponseValidationError{}
+
 // Validate checks the field values on ListTasksRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.
@@ -1627,6 +2249,14 @@ func (m *UpdateTaskRequest) validate(all bool) error {
 
 	// no validation rules for Description
 
+	// no validation rules for CustomerId
+
+	// no validation rules for ExecutorId
+
+	// no validation rules for Status
+
+	// no validation rules for IsActive
+
 	if len(errors) > 0 {
 		return UpdateTaskRequestMultiError(errors)
 	}
@@ -1728,6 +2358,35 @@ func (m *UpdateTaskResponse) validate(all bool) error {
 	}
 
 	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetTask()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateTaskResponseValidationError{
+					field:  "Task",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateTaskResponseValidationError{
+					field:  "Task",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetTask()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateTaskResponseValidationError{
+				field:  "Task",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if len(errors) > 0 {
 		return UpdateTaskResponseMultiError(errors)

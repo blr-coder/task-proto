@@ -127,12 +127,12 @@ message GetTaskResponse {
 
 message UpdateTaskRequest {
   int64 task_id = 1;
-  string title = 2;
-  string description = 3;
-  string customer_id = 4 [(buf.validate.field).string.uuid = true];
+  google.protobuf.StringValue title = 2;
+  google.protobuf.StringValue description = 3;
+  google.protobuf.StringValue customer_id = 4 [(buf.validate.field).string.uuid = true];
   google.protobuf.StringValue executor_id = 5 [(buf.validate.field).string.uuid = true];
   TaskStatus status = 6;
-  bool is_active = 7;
+  google.protobuf.BoolValue is_active = 7;
 }
 
 message UpdateTaskResponse {

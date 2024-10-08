@@ -4,7 +4,6 @@ package task.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/wrappers.proto";
 
 option go_package = "/task";
 
@@ -84,8 +83,8 @@ message TaskFiltering {
   google.protobuf.Timestamp created_at_from = 1;
   google.protobuf.Timestamp created_at_to = 2;
   repeated TaskStatus statuses = 3;
-  google.protobuf.BoolValue is_active = 4;
-  google.protobuf.StringValue currency = 8;
+  optional bool is_active = 4;
+  optional string currency = 8;
 }
 
 message Task {
@@ -117,7 +116,7 @@ message CreateTaskRequest {
   string title = 1 [(buf.validate.field).string.min_len = 5];
   string description = 2;
   string customer_id = 3 [(buf.validate.field).string.uuid = true];
-  google.protobuf.StringValue executor_id = 4;
+  optional string executor_id = 4;
   Price price = 5;
 }
 
@@ -135,12 +134,12 @@ message GetTaskResponse {
 
 message UpdateTaskRequest {
   int64 task_id = 1;
-  google.protobuf.StringValue title = 2;
-  google.protobuf.StringValue description = 3;
-  google.protobuf.StringValue customer_id = 4 [(buf.validate.field).string.uuid = true];
-  google.protobuf.StringValue executor_id = 5 [(buf.validate.field).string.uuid = true];
+  optional string title = 2;
+  optional string description = 3;
+  optional string customer_id = 4 [(buf.validate.field).string.uuid = true];
+  optional string executor_id = 5 [(buf.validate.field).string.uuid = true];
   TaskStatus status = 6;
-  google.protobuf.BoolValue is_active = 7;
+  optional bool is_active = 7;
   Price price = 8;
 }
 

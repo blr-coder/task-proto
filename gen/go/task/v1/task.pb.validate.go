@@ -1031,6 +1031,64 @@ func (m *TotalTasksRequest) validate(all bool) error {
 		}
 	}
 
+	if all {
+		switch v := interface{}(m.GetSorting()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, TotalTasksRequestValidationError{
+					field:  "Sorting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, TotalTasksRequestValidationError{
+					field:  "Sorting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetSorting()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return TotalTasksRequestValidationError{
+				field:  "Sorting",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetLimiting()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, TotalTasksRequestValidationError{
+					field:  "Limiting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, TotalTasksRequestValidationError{
+					field:  "Limiting",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetLimiting()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return TotalTasksRequestValidationError{
+				field:  "Limiting",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if len(errors) > 0 {
 		return TotalTasksRequestMultiError(errors)
 	}
@@ -1441,62 +1499,70 @@ func (m *TaskFiltering) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetCreatedAtFrom()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, TaskFilteringValidationError{
-					field:  "CreatedAtFrom",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	if m.CreatedAtFrom != nil {
+
+		if all {
+			switch v := interface{}(m.GetCreatedAtFrom()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, TaskFilteringValidationError{
+						field:  "CreatedAtFrom",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, TaskFilteringValidationError{
+						field:  "CreatedAtFrom",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(m.GetCreatedAtFrom()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, TaskFilteringValidationError{
+				return TaskFilteringValidationError{
 					field:  "CreatedAtFrom",
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAtFrom()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return TaskFilteringValidationError{
-				field:  "CreatedAtFrom",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
-	if all {
-		switch v := interface{}(m.GetCreatedAtTo()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, TaskFilteringValidationError{
-					field:  "CreatedAtTo",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	if m.CreatedAtTo != nil {
+
+		if all {
+			switch v := interface{}(m.GetCreatedAtTo()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, TaskFilteringValidationError{
+						field:  "CreatedAtTo",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, TaskFilteringValidationError{
+						field:  "CreatedAtTo",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(m.GetCreatedAtTo()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, TaskFilteringValidationError{
+				return TaskFilteringValidationError{
 					field:  "CreatedAtTo",
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAtTo()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return TaskFilteringValidationError{
-				field:  "CreatedAtTo",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if m.IsActive != nil {
@@ -1910,41 +1976,47 @@ func (m *CreateTaskRequest) validate(all bool) error {
 
 	// no validation rules for Title
 
-	// no validation rules for Description
-
 	// no validation rules for CustomerId
 
-	if all {
-		switch v := interface{}(m.GetPrice()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, CreateTaskRequestValidationError{
-					field:  "Price",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, CreateTaskRequestValidationError{
-					field:  "Price",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetPrice()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateTaskRequestValidationError{
-				field:  "Price",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+	if m.Description != nil {
+		// no validation rules for Description
 	}
 
 	if m.ExecutorId != nil {
 		// no validation rules for ExecutorId
+	}
+
+	if m.Price != nil {
+
+		if all {
+			switch v := interface{}(m.GetPrice()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CreateTaskRequestValidationError{
+						field:  "Price",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CreateTaskRequestValidationError{
+						field:  "Price",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetPrice()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CreateTaskRequestValidationError{
+					field:  "Price",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	}
 
 	if len(errors) > 0 {
@@ -2386,37 +2458,6 @@ func (m *UpdateTaskRequest) validate(all bool) error {
 
 	// no validation rules for TaskId
 
-	// no validation rules for Status
-
-	if all {
-		switch v := interface{}(m.GetPrice()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpdateTaskRequestValidationError{
-					field:  "Price",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, UpdateTaskRequestValidationError{
-					field:  "Price",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetPrice()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateTaskRequestValidationError{
-				field:  "Price",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	if m.Title != nil {
 		// no validation rules for Title
 	}
@@ -2433,8 +2474,45 @@ func (m *UpdateTaskRequest) validate(all bool) error {
 		// no validation rules for ExecutorId
 	}
 
+	if m.Status != nil {
+		// no validation rules for Status
+	}
+
 	if m.IsActive != nil {
 		// no validation rules for IsActive
+	}
+
+	if m.Price != nil {
+
+		if all {
+			switch v := interface{}(m.GetPrice()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, UpdateTaskRequestValidationError{
+						field:  "Price",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, UpdateTaskRequestValidationError{
+						field:  "Price",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetPrice()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return UpdateTaskRequestValidationError{
+					field:  "Price",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	}
 
 	if len(errors) > 0 {
